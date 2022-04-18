@@ -193,7 +193,7 @@ public class ExamCreationService {
 		}
 		final ExamDetails EXAMDETAILS = examDetails;
 		notExistingTopics = topics.stream().filter(topic ->
-			topicRepository.findByTopicNameAndExamDetails(topic, EXAMDETAILS).isE.isPresent()	).collect(Collectors.toList());
+			!topicRepository.findByTopicNameAndExamDetails(topic, EXAMDETAILS).isPresent()	).collect(Collectors.toList());
 		
 		if (notExistingTopics.size() > 0) {
 			throw new TopicNotFoundException("The following topics are not found : "+ notExistingTopics);
