@@ -32,7 +32,7 @@ public class Runner implements CommandLineRunner {
 		
 		Role adminRole = roleRepository.getById("ADMIN");
 		
-		userRepository.save(new User("gayathrithushara02@gmail.com", "G3@dance", adminRole, LocalDate.now()));
+		userRepository.save(new User("gayathrithushara02@gmail.com", "$2a$10$eErQGDpctxn2tCvgCkcQF.fppM74B3HY2oKDxM0ZwG7uQ.eqxsTXO", adminRole, LocalDate.now()));
 
 		
 		LOGGER.info("created roles and admin");
