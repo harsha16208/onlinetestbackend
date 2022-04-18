@@ -23,7 +23,7 @@ public class ExamStrategy {
 		
 		//generating random values for questions
 		while(randomValues.size() < numberOfQuestionsInExam) {
-			int randomvalue = random.nextInt(0, numberOfQuestions);
+			int randomvalue = random.nextInt(numberOfQuestions);
 			randomValues.add(randomvalue);
 		}
 		
