@@ -45,7 +45,7 @@ public class ResultFilterService {
 		List<Result> shortListed = null;
 		List<Result> notShortListed = null;
 
-		if (findExam.isEmpty()) {
+		if (!findExam.isPresent()) {
 			throw new InsufficientDetailsException("please provide sufficient details for filtering candidates");
 		}
 		examDetails = findExam.get();
@@ -91,7 +91,7 @@ public class ResultFilterService {
 		List<Result> shortListed = null;
 		List<String> emails = new ArrayList<>();
 
-		if (findOrganization.isEmpty() || findExam.isEmpty()) {
+		if (!findOrganization.isPresent() || !findExam.isPresent()) {
 			throw new InsufficientDetailsException("please provide sufficient details for filtering candidates");
 		}
 		// verifying logged in user with actual user

@@ -32,7 +32,7 @@ public class OrganizationHomeDetailsService {
 		Map<String, String> homeDetails = new HashMap<>();
 		Optional<Organization> findOrganization = organizationRepository.findById(orgId);
 		Organization organization = null;
-		if (findOrganization.isEmpty()) {
+		if (!findOrganization.isPresent()) {
 			throw new OrganizationDoesntExistException("No organization Exists with given id :" + orgId);
 		}
 		organization = findOrganization.get();

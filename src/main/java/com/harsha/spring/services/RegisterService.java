@@ -69,7 +69,7 @@ public class RegisterService {
 		String exceptionMessage = "";
 		String username = organization.getUsername();
 		Optional<User> user = userRepository.findById(username);
-		if (user.isEmpty()) { // if there exists no user with given username create a new account else throw
+		if (!user.isPresent()) { // if there exists no user with given username create a new account else throw
 								// duplicate account exception
 			long mobile = Long.parseLong(organization.getMobile());
 			Role role = roleRepository.getById("ORG");
@@ -110,7 +110,7 @@ public class RegisterService {
 		Optional<User> user = userRepository.findById(username);
 		String exceptionMessage = "";
 
-		if (user.isEmpty()) {
+		if (!user.isPresent()) {
 			Role role = roleRepository.getById("CANDIDATE");
 			String password = bCryptPasswordEncoder.encode(candidate.getPassword());
 			User userDetails = new User(candidate.getUsername(), password, role, LocalDate.now());
@@ -156,7 +156,7 @@ public class RegisterService {
 		Candidate candidate = null;
 		User user = null;
 
-		if (findCandidate.isEmpty()) {
+		if (!findCandidate.isPresent()) {
 			throw new CandidateNotFoundException("No canidate found with given id : " + cId);
 		}
 		// verifying logged in user with actual user
@@ -165,10 +165,10 @@ public class RegisterService {
 		if (!actualUser.getUsername().equals(loggedUser.getUsername())) {
 			throw new IllegalAccessException("You're not permitted here");
 		}
-		if (findOrganization.isEmpty()) {
+		if (!findOrganization.isPresent()) {
 			throw new OrganizationDoesntExistException("organization doesn't exist with given id : " + orgId);
 		}
-		if (findExam.isEmpty()) {
+		if (!findExam.isPresent()) {
 			throw new NoExamFoundException("No exam found with given id : " + eId);
 		}
 

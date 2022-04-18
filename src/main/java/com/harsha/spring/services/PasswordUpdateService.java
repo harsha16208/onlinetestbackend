@@ -23,7 +23,7 @@ public class PasswordUpdateService {
 	public String updatePassword(PasswordChangeVo details) {
 		Optional<User> findUser = userRepository.findById(details.getUsername());
 		User user = null;
-		if (findUser.isEmpty()) {
+		if (!findUser.isPresent()) {
 			throw new UsernameNotFoundException("No user found with given username");
 		}
 		user = findUser.get();

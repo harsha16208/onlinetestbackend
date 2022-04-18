@@ -49,7 +49,7 @@ public class UserVerificationService {
 		String email = otpDetails.getEmail();
 		String otp = otpDetails.getOtp();
 		Optional<UserVerification> userVerificationDetails = userVerificationRepository.findByUsername(email);
-		if (userVerificationDetails.isEmpty()) {
+		if (!userVerificationDetails.isPresent()) {
 			throw new UsernameNotFoundException("No Otp request received from : "+ email );
 		}
 		UserVerification userVerification = userVerificationDetails.get();

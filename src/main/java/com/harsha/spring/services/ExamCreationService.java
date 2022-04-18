@@ -66,7 +66,7 @@ public class ExamCreationService {
 		//getting logged in user
 		User loggedUser = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Optional<Organization> organization = organizationRepository.findById(orgId);
-		if(organization.isEmpty()) { // if organization doesn't exist throw an exception
+		if(!organization.isPresent()) { // if organization doesn't exist throw an exception
 			LOGGER.error("Creation of exam with invalid organization id");
 			throw new OrganizationDoesntExistException("organization with given id "+ orgId +" doesn't exist");
 		}
@@ -155,7 +155,7 @@ public class ExamCreationService {
 		List<String> notExistingTopics;
 		List<Integer> expectedNumberOfQuestonsInEachtopic = new ArrayList<>();
 		
-		if(findOrganization.isEmpty()) {
+		if(!findOrganization.isPresent()) {
 			LOGGER.error("Posting questions with invalid organization id");
 			throw new OrganizationDoesntExistException("No organization found with given id : "+orgId);
 		}
@@ -166,7 +166,7 @@ public class ExamCreationService {
 		if (! actualUser.getUsername().equals(loggedUser.getUsername())) {
 			throw new IllegalAccessException("You're not permitted here");
 		}
-		if(findExam.isEmpty()) {
+		if(!findExam.isPresent()) {
 			LOGGER.error("Posting questions with invalid examination id");
 			throw new NoExamFoundException("No Exam found with given id : "+eId);
 		}
@@ -193,8 +193,7 @@ public class ExamCreationService {
 		}
 		final ExamDetails EXAMDETAILS = examDetails;
 		notExistingTopics = topics.stream().filter(topic ->
-			topicRepository.findByTopicNameAndExamDetails(topic, EXAMDETAILS).isEmpty()
-		).collect(Collectors.toList());
+			topicRepository.findByTopicNameAndExamDetails(topic, EXAMDETAILS).isE.isPresent()	).collect(Collectors.toList());
 		
 		if (notExistingTopics.size() > 0) {
 			throw new TopicNotFoundException("The following topics are not found : "+ notExistingTopics);

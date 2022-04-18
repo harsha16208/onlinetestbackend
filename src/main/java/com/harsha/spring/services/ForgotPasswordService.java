@@ -35,7 +35,7 @@ public class ForgotPasswordService {
 		User user = null;
 		ForgotPasswordOtpModel forgotPasswordOtpModel = new ForgotPasswordOtpModel();
 		Optional<ForgotPasswordOtpModel> findOtp = null;
-		if (findUser.isEmpty()) {
+		if (!findUser.isPresent()) {
 			throw new UsernameNotFoundException("No user found with given username");
 		}
 		user = findUser.get();
@@ -64,12 +64,12 @@ public class ForgotPasswordService {
 		Optional<ForgotPasswordOtpModel> findOtp;
 		ForgotPasswordOtpModel forgotPasswordOtpModel;
 		User user = null;
-		if (findUser.isEmpty()) {
+		if (!findUser.isPresent()) {
 			throw new UsernameNotFoundException("No user found with given username");
 		}
 		user = findUser.get();
 		findOtp = forgotPasswordOtpRepository.findByUsername(user);
-		if (findOtp.isEmpty()) {
+		if (!findOtp.isPresent()) {
 			throw new UserNotVerifiedException("No Request for otp");
 		}
 		forgotPasswordOtpModel = findOtp.get();

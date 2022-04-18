@@ -170,7 +170,7 @@ public class CandidateExamRequestService {
 		Candidate candidate = null;
 
 		//
-		if (organization.isEmpty() || examDetails.isEmpty() || findCandidate.isEmpty()) {
+		if (!organization.isPresent() || !examDetails.isPresent() || !findCandidate.isPresent()) {
 			System.out.println(1);
 			throw new InsufficientDetailsException("Invalid submission");
 		}
@@ -178,7 +178,7 @@ public class CandidateExamRequestService {
 		candidate = findCandidate.get();
 		registeredCandidate = registeredCandidatesRepository.findByCandidateAndExamDetails(candidate, examDetails.get());
 		
-		if (registeredCandidate.isEmpty()) {
+		if (!registeredCandidate.isPresent()) {
 			System.out.println(2);
 			throw new InsufficientDetailsException("Invalid Submission");
 		}

@@ -39,7 +39,7 @@ public class TriggerExamMailsService {
 		ExamDetails examDetails = null;
 		List<String> mailIds = new ArrayList<>();
 
-		if (findExam.isEmpty()) {
+		if (!findExam.isPresent()) {
 			throw new NoExamFoundException("No exam found with given details");
 		} else {
 			examDetails = findExam.get();
