@@ -2,6 +2,7 @@ package com.harsha.spring;
 
 import java.time.LocalDate;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,9 @@ public class Runner implements CommandLineRunner {
 	@Autowired
 	private UserRepository userRepository;
 	
+	private final static Logger LOGGER = Logger.getLogger(Runner.class);
+
+	
 	@Override
 	public void run(String... args) throws Exception {
 		roleRepository.save(new Role("ADMIN", "Can manage users"));
@@ -30,6 +34,8 @@ public class Runner implements CommandLineRunner {
 		
 		userRepository.save(new User("gayathrithushara02@gmail.com", "G3@dance", adminRole, LocalDate.now()));
 
+		
+		LOGGER.info("created roles and admin");
 	}
 
 }
