@@ -32,7 +32,6 @@ public class Question {
 	@JsonIgnore
 	@JoinColumn(name = "examId")
 	private ExamDetails examId;
-	@Lob
 	private String question;
 	private String option1;
 	private String option2;
