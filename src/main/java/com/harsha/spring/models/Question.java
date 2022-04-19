@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.harsha.spring.generators.IdGenerator;
@@ -32,6 +33,8 @@ public class Question {
 	@JsonIgnore
 	@JoinColumn(name = "examId")
 	private ExamDetails examId;
+	@Lob
+	@Type(type = "text")
 	private String question;
 	private String option1;
 	private String option2;
