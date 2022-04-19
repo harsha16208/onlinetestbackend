@@ -33,8 +33,6 @@ public class Question {
 	@JsonIgnore
 	@JoinColumn(name = "examId")
 	private ExamDetails examId;
-	@Lob
-	@Type(type = "org.hibernate.type.ClobType")
 	private String question;
 	private String option1;
 	private String option2;
