@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -69,6 +70,8 @@ public class CandidateExamRequestService {
 
 	@Autowired
 	private TopicRepository topicRepository;
+	
+	private static final Logger LOGGER = Logger.getLogger(CandidateExamRequestService.class);
 
 	public List<Map<String, List<Question>>> generateQuestionPaper(String orgId, String eId, String cId)
 			throws Exception {
@@ -113,7 +116,7 @@ public class CandidateExamRequestService {
 				LocalDateTime currentTime  = LocalDateTime.now();
 				LocalDateTime endTime = examDetails.getEndDate();
 				
-				
+				LOGGER.info(startTime+" \n"+currentTime+" \n"+endTime);
 				
 				if (startTime.isAfter(currentTime) || currentTime.isAfter(endTime)) {
 					return null;
